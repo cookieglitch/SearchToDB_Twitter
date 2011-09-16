@@ -1,0 +1,8 @@
+SearchToDB - Twitter
+(C)John Tiernan 2001
+
+Short program using Twitter4J to grab a search from Twitter and output it to a CSV file.
+
+Running from a command line
+1) cd to directory
+2) java -jar SearchToDB_Twitter.jar "[query]"
