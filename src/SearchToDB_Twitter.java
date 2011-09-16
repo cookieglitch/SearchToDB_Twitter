@@ -53,6 +53,7 @@ public class SearchToDB_Twitter {
            
             try
             {
+            	//Get date for filename
             	Date d = new Date();
             	
             	//FileOutputStream output = new FileOutputStream("results_" + d.toString() + ".csv");
@@ -95,6 +96,7 @@ public class SearchToDB_Twitter {
             		}
             	}
             }
+            //If IO error, exit
             catch (IOException ioe)
             {
             	System.out.println("Error:");
