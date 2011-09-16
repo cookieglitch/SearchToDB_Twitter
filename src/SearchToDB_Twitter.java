@@ -11,6 +11,7 @@ import twitter4j.*;
 
 import java.util.List;
 import java.io.*;
+import java.util.Date;
 
 public class SearchToDB_Twitter {
 
@@ -50,15 +51,56 @@ public class SearchToDB_Twitter {
             System.out.println("Query: " + keyword);
             System.out.println("Number of results: " + resultCount);
            
-            for (Tweet tweet : tweets) {
-                System.out.println("@" + tweet.getFromUser() + " - " + tweet.getText());
+            try
+            {
+            	Date d = new Date();
+            	
+            	//FileOutputStream output = new FileOutputStream("results_" + d.toString() + ".csv");
+            	//System.out.println(output.getName());
+            	
+            	File fi = new File("results_" + d.toString() + ".csv");
+            	if(fi.exists())
+            	{
+            		System.out.println("Error: You seem to have discovered time travel so this file already exists.");
+            		System.out.println("Please return home before trying again");
+            		System.exit(-1);
+            	}
+            	
+            	BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(fi));
+            	
+            	if(fi.canWrite())
+            	{
+            		System.out.println("Writing to file " + fi.getName());
+            		
+            		for (Tweet tweet : tweets) {
+            			//CSV format
+            			//Username, tweet, datestamp, url
+            			//@username, tweet..., 123456789, link
+            			String data = "@" + tweet.getFromUser() + " - " + tweet.getText();
+            			System.out.println(data);
+            		
+            			for(int i = 0; i < data.length(); i++)
+            			{
+            				output.write(data.charAt(i));
+            			}
+            			output.write('\n');
+            		}
+            		output.close();
+            	}
+            	else
+            	{
+            		for (Tweet tweet : tweets) {
+            			System.out.println("@" + tweet.getFromUser() + " - " + tweet.getText());
+            		
+            		}
+            	}
             }
-            
-            //CSV format
-            //Username, tweet, datestamp, url
-            //@username, tweet..., 123456789, link
-            
-            
+            catch (IOException ioe)
+            {
+            	System.out.println("Error:");
+            	//System.out.println("");
+            	ioe.printStackTrace();
+            }
             
             
             System.exit(0);
