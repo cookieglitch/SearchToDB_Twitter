@@ -2,11 +2,13 @@
  * Twitter Search Exporter
  * 
  * @author John Tiernan
- * @version 2011_16/Sept
+ * @version 2011_16/Sept-2
  */
 
 import twitter4j.*;
+
 import java.util.List;
+import java.io.*;
 
 public class SearchToDB_Twitter {
 
@@ -17,8 +19,11 @@ public class SearchToDB_Twitter {
 	 * @param args[3] Destination
 	 */
 	public static void main(String[] args) {
+		System.out.println("SearchToDB - Twitter\n\t(C)John Tiernan 2001");
+		
+		
 		if (args.length < 1) {
-            System.out.println("java -jar SearchToDB_Twitter.jar \"[query]\"");
+            System.out.println("Error: Too few parameters\n\tUsage: java -jar SearchToDB_Twitter.jar \"[query]\"");
             System.exit(-1);
         }
 		
@@ -33,11 +38,27 @@ public class SearchToDB_Twitter {
 		
 		//Example code from lib
 		try {
-            QueryResult result = twit.search(new Query(args[0]));
+			Query q = new Query(keyword);
+            QueryResult result = twit.search(q);
+
             List<Tweet> tweets = result.getTweets();
+            //Edits
+            int resultCount = tweets.size();
+            
+            System.out.println("Query: " + keyword);
+            System.out.println("Number of results: " + resultCount);
+           
             for (Tweet tweet : tweets) {
                 System.out.println("@" + tweet.getFromUser() + " - " + tweet.getText());
             }
+            
+            //CSV format
+            //Username, tweet, datestamp, url
+            //@username, tweet..., 123456789, link
+            
+            
+            
+            
             System.exit(0);
         } catch (TwitterException te) {
             te.printStackTrace();
