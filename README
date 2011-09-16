@@ -1,5 +1,5 @@
 SearchToDB - Twitter
-(C)John Tiernan 2001
+(C)John Tiernan 2011
 
 Short program using Twitter4J to grab a search from Twitter and output it to a CSV file.
 

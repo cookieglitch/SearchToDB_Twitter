@@ -4,9 +4,8 @@
  * Small program using Twitter4j to grab and save a search on twitter.
  * 
  * @author John Tiernan
- * @version 2011_16/Sept-2
+ * @version 2011_16/Sept-5
  */
-
 import twitter4j.*;
 
 import java.util.List;
