@@ -76,7 +76,7 @@ public class SearchToDB_Twitter {
             			//CSV format
             			//Username, tweet, datestamp, url
             			//@username, tweet..., 123456789, link
-            			String data = "@" + tweet.getFromUser() + " - " + tweet.getText();
+            			String data = "@" + tweet.getFromUser() + STBConsts.CSVBreak + tweet.getText().replaceAll(",","COMMA") + STBConsts.CSVBreak + tweet.getCreatedAt() + STBConsts.CSVBreak + tweet.getSource();
             			System.out.println(data);
             		
             			for(int i = 0; i < data.length(); i++)
