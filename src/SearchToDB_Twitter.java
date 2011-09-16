@@ -1,6 +1,8 @@
 /**
  * Twitter Search Exporter
  * 
+ * Small program using Twitter4j to grab and save a search on twitter.
+ * 
  * @author John Tiernan
  * @version 2011_16/Sept-2
  */
